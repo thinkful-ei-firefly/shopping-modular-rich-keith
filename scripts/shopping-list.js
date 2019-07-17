@@ -60,14 +60,13 @@ const shoppingList = (function(){
   function addItemToShoppingList(itemName) {
     try {
       Item.validateName(itemName);
-      let item = Item.create;
+      let item = Item.create(itemName);
       store.items.push(item);
       render();
     }
     catch(error) {
       console.log(`Cannot add item: {error.message}`);
     }
-    store.items.push({ id: cuid(), name: itemName, checked: false });
   }
   
   function handleNewItemSubmit() {
