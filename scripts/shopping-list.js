@@ -78,10 +78,9 @@ const shoppingList = (function(){
     });
   }
   
-  function toggleCheckedForListItem(id) {
-    const foundItem = store.items.find(item => item.id === id);
-    foundItem.checked = !foundItem.checked;
-  }
+  /*function toggleCheckedForListItem(id) {
+    store.filterChecked();
+  }*/
   
   
   function getItemIdFromElement(item) {
@@ -93,7 +92,7 @@ const shoppingList = (function(){
   function handleItemCheckClicked() {
     $('.js-shopping-list').on('click', '.js-item-toggle', event => {
       const id = getItemIdFromElement(event.currentTarget);
-      toggleCheckedForListItem(id);
+      store.findAndToggleChecked(id);
       render();
     });
   }
@@ -116,7 +115,6 @@ const shoppingList = (function(){
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
-      //editListItemName(id, itemName);
       store.findAndUpdateName(id, itemName);
       render();
     });
@@ -124,7 +122,7 @@ const shoppingList = (function(){
   
   function handleToggleFilterClick() {
     $('.js-filter-checked').click(() => {
-      store.findAndToggleChecked();
+      store.filterChecked();
       render();
     });
   }
