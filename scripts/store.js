@@ -1,6 +1,6 @@
 'use strict';
 
-/* global store, cuid */
+/* global cuid, Item */
 
 const store = (function () {
   const foo = 'bar';
@@ -29,8 +29,7 @@ const store = (function () {
     }
   };
 
-  let findAndToggleChecked = function(id) {
-    let item = this.findById(id);
+  let findAndToggleChecked = function() {
     this.hideCheckedItems = !this.hideCheckedItems;
   };
 
@@ -51,6 +50,10 @@ const store = (function () {
     console.log(this.items);
   };
 
+  let getSearchTerm = function(term) {
+    this.searchTerm = term;
+  };
+
   return {
     items,
     hideCheckedItems,
@@ -60,5 +63,6 @@ const store = (function () {
     findAndToggleChecked,
     findAndUpdateName,
     findAndDelete,
+    getSearchTerm,
   };
 }() );

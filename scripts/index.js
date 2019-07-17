@@ -1,5 +1,5 @@
 'use strict';
-/* global shoppingList, cuid */
+/* global shoppingList, $ */
 
 // eslint-disable-next-line no-unused-vars
 
@@ -9,4 +9,3 @@ function main() {
 }
 
 $(main);
-console.log(Item);

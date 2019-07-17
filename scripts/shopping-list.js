@@ -1,8 +1,7 @@
 'use strict';
-/* global store, cuid */
+/* global store, $, Item */
 
 // eslint-disable-next-line no-unused-vars
-
 const shoppingList = (function(){
 
   function generateItemElement(item) {
@@ -99,11 +98,6 @@ const shoppingList = (function(){
     });
   }
   
-  function setSearchTerm(val) {
-    store.searchTerm = val;
-  }
-  
-  
   function handleDeleteItemClicked() {
     // like in `handleItemCheckClicked`, we use event delegation
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
@@ -130,7 +124,6 @@ const shoppingList = (function(){
   
   function handleToggleFilterClick() {
     $('.js-filter-checked').click(() => {
-      //toggleCheckedItemsFilter();
       store.findAndToggleChecked();
       render();
     });
@@ -139,7 +132,7 @@ const shoppingList = (function(){
   function handleShoppingListSearch() {
     $('.js-shopping-list-search-entry').on('keyup', event => {
       const val = $(event.currentTarget).val();
-      setSearchTerm(val);
+      store.getSearchTerm(val);
       render();
     });
   }
