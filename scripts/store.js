@@ -31,7 +31,7 @@ const store = (function () {
 
   let findAndToggleChecked = function(id) {
     let item = this.findById(id);
-    item.checked = !item.checked;
+    this.hideCheckedItems = !this.hideCheckedItems;
   };
 
   let findAndUpdateName = function(id, newName) {
@@ -41,12 +41,14 @@ const store = (function () {
       item.name = newName;
     }
     catch(error) {
-      console.log(`Cannot update name: {error.message}`);
+      console.log(`Cannot update name: ${error.message}`);
     }
   };
 
   let findAndDelete = function(id) {
-    return this.items.filter(item => item.id !== id);
+    console.log(this.items);
+    store.items = this.items.filter(item => item.id !== id);
+    console.log(this.items);
   };
 
   return {
