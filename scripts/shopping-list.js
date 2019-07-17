@@ -2,6 +2,7 @@
 /* global store, cuid */
 
 // eslint-disable-next-line no-unused-vars
+
 const shoppingList = (function(){
 
   function generateItemElement(item) {
@@ -57,6 +58,15 @@ const shoppingList = (function(){
   
   
   function addItemToShoppingList(itemName) {
+    try {
+      Item.validateName(itemName);
+      let item = Item.create;
+      store.items.push(item);
+      render();
+    }
+    catch(error) {
+      console.log(`Cannot add item: {error.message}`);
+    }
     store.items.push({ id: cuid(), name: itemName, checked: false });
   }
   
